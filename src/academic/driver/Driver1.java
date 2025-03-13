@@ -103,6 +103,8 @@ public class Driver1 {
             }
         }
 
+        scn.close();
+
 
 
         for(int i = 0; i < daftarLecturers.size();i++){
