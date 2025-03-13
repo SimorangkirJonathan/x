@@ -42,34 +42,74 @@ public class Driver1 {
 
             if(temp[0].equals("course-add")){
                 temp[5] = splitCommand[5];
+                String[] dsn = temp[5].split(",");
+
                 Course course = new Course(temp[1], temp[2], temp[3], temp[4]);
                 daftarMataKuliah.add(course);
+
+                for(Lecturer lecturer : daftarLecturers){
+                    for(int i = 0; i < dsn.length; i++){
+                        if(lecturer.getIntial().equals(dsn[i])){
+                            course.tambahDosen(lecturer);
+                        }
+                    }
+                }
+
+
+                
+                
+
+
             } else if(temp[0].equals("student-add")){
                 Student student = new Student(temp[1], temp[2], temp[3], temp[4]);
                 daftarMahasiswa.add(student);
+
+                for(int i = 0; i < daftarMahasiswa.size(); i++){
+                    for(int j = 0; j < daftarMahasiswa.size(); j++){
+                        if(daftarMahasiswa.get(i).getNim().equals(daftarMahasiswa.get(j).getNim()) && i != j){
+                            daftarMahasiswa.remove(j);
+                        }
+                    }
+                }
+
+
             } else if(temp[0].equals("enrollment-add")){
                 Enrollment enrollment = new Enrollment(temp[1], temp[2], temp[3], temp[4]);
                 daftarEnrollments.add(enrollment);
+
+
             } else if(temp[0].equals("lecturer-add")){
                 temp[5] = splitCommand[5];
                 Lecturer lecturer = new Lecturer(temp[1], temp[2], temp[3] ,temp[4], temp[5]);
                 daftarLecturers.add(lecturer);
-            }
-        }
 
-        for(int i = 0; i < daftarLecturers.size(); i++){
-            for(int j = 0; j < daftarLecturers.size(); j++){
-                if(daftarLecturers.get(i).getNidn().equals(daftarLecturers.get(j).getNidn()) && i != j){
-                    daftarLecturers.remove(j);
+                for(int i = 0; i < daftarLecturers.size(); i++){
+                    for(int j = 0; j < daftarLecturers.size(); j++){
+                        if(daftarLecturers.get(i).getNidn().equals(daftarLecturers.get(j).getNidn()) && i != j){
+                            daftarLecturers.remove(j);
+                        }
+                    }
+                }
+
+
+
+            } else if(temp[0].equals("enrollment-grade")){
+                temp[5] = splitCommand[5];
+                for(int i = 0; i < daftarEnrollments.size();i++){
+                    if(daftarEnrollments.get(i).getCodeCourse().equals(temp[1]) && daftarEnrollments.get(i).getNim().equals(temp[2])){
+                        daftarEnrollments.get(i).setNilai(temp[5]);
+                    }
                 }
             }
         }
+
+
 
         for(int i = 0; i < daftarLecturers.size();i++){
             daftarLecturers.get(i).DisplayLecturer();
         }
 
-        for(int i = daftarMataKuliah.size()-1; i >= 0; i--){
+        for(int i = 0; i < daftarMataKuliah.size(); i++){
             daftarMataKuliah.get(i).DisplayCourse();
         }
         for(int i = 0; i < daftarMahasiswa.size(); i++){

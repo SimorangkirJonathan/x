@@ -70,8 +70,8 @@ public class Enrollment {
         this.student = student;
     }
 
-    public void cekValidalitas(){
-        
+    public void setNilai(String nilai){
+        this.nilai = nilai;
     }
 
 
