@@ -113,7 +113,7 @@ public class Driver1 {
 
         for(int i = 0; i < daftarMataKuliah.size(); i++){
             daftarMataKuliah.get(i).DisplayCourse();
-        }
+        }s
         for(int i = 0; i < daftarMahasiswa.size(); i++){
             daftarMahasiswa.get(i).DisplayStudent();
         }
